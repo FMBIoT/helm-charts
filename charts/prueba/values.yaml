@@ -1,0 +1,34 @@
+# Default values for vpn-enabler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: ravaga/wg-api
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "1.0"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+
+wgApiPort: 3000
+wireguardPort: 51820
+
+wgApiSvcType: LoadBalancer #NodePort
+wgApiNodePort: 30000
+wgSvcType: LoadBalancer
+wireguardNodePort: 30001
+
+wgPrivateKey: "qAuVUEbmcI3ofLsjJmQ6+RtEejoNX+WHs7QOsIccn0Y="
+serverIP: "192.168.1.67"
+wgSubnet: "192.168.2.1/24"
+peerAllowedIPs: "0.0.0.0/0,::/0"
+mongoDbHost: vpn-enabler-mongo # Mongo service
+mongoDbPort: 27017
+mongoDbUser: user
+mongoDbPass: p4ssw0rd
+
+mongoDBStorage: "50Mi"

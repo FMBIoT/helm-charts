@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      enabler: {{ .Release.Name }}
+      tier: api
+  template:
+    metadata:
+      labels:
+        enabler: {{ .Release.Name }}
+        tier: api
+    spec:
+      containers:
+        - name: wg-api
+          {{- with .Values.image }}
+          image: {{ .repository }}:{{ .tag }}
+          imagePullPolicy: {{ .pullPolicy }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.wgApiPort }}
+            - containerPort: {{ .Values.wireguardPort }}
+              protocol: UDP
+          env:
+            - name: API_PORT
+              value: {{ .Values.wgApiPort | quote }}
+            - name: SERVER_IP
+              value: {{ .Values.serverIP }}
+            - name: WG_PRIVATE_KEY
+              value: {{ .Values.wgPrivateKey }}
+            - name: WG_SUBNET
+              value: {{ .Values.wgSubnet }}
+            - name: WG_PORT
+              value: {{ .Values.wireguardPort | quote }}
+            - name: PEER_ALLOWED_IPS
+              value: {{ .Values.peerAllowedIPs }}
+            - name: MONGODB_HOST
+              value: {{ .Release.Name }}-mongo
+            - name: MONGODB_PORT
+              value: {{ .Values.mongoDbPort | quote }}
+            - name: MONGODB_USER
+              value: {{ .Values.mongoDbUser }}
+            - name: MONGODB_PASS
+              value: {{ .Values.mongoDbPass }}
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
+            privileged: true
