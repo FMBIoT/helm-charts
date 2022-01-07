@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  prueba:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-01-07T12:43:06.734654261Z"
+    description: A Helm chart for the Assist-IoT VPN Enabler
+    digest: 5e24c08bf3a6c9bb5913175454a7d265f6fee1638dd56eca3e6386bf9873bc5f
+    name: prueba
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/prueba-0.2.3/prueba-0.2.3.tgz
+    version: 0.2.3
   vpn-enabler:
   - apiVersion: v2
     appVersion: 1.0.0
