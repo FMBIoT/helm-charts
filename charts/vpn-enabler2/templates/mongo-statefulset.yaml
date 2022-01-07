@@ -32,9 +32,9 @@ spec:
   volumeClaimTemplates:
     - metadata:
         name: {{ .Release.Name }}-mongo-persistent-storage-claim
+        finalizer: null
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: "sistemaficheros"
         resources:
           requests:
             storage: {{ .Values.mongoDBStorage }}
