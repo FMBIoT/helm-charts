@@ -1,1 +1,0 @@
-Assist-IoT VPN Enabler. For more info visit: https://gitlab.assist-iot.eu/wp4/network/vpn
