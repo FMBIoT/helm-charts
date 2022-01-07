@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mongo
+spec:
+  selector:
+    matchLabels:
+      enabler: {{ .Release.Name }}
+      tier: db
+  serviceName: "wg-mongo"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        enabler: {{ .Release.Name }}
+        tier: db
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-mongo
+          image: mongo
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.mongoDbPort }}
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: {{ .Values.mongoDbUser }}
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: {{ .Values.mongoDbPass }}
+          volumeMounts:
+            - name: {{ .Release.Name }}-mongo-persistent-storage-claim
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ .Release.Name }}-mongo-persistent-storage-claim
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.mongoDBStorage }}
