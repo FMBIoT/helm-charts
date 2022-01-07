@@ -34,6 +34,7 @@ spec:
         name: {{ .Release.Name }}-mongo-persistent-storage-claim
       spec:
         accessModes: ["ReadWriteOnce"]
+	storageClassName: "sistemaficheros"
         resources:
           requests:
             storage: {{ .Values.mongoDBStorage }}
