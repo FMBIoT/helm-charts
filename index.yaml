@@ -34,6 +34,16 @@ entries:
   vpn-enabler:
   - apiVersion: v2
     appVersion: 1.0.0
+    created: "2022-01-14T10:44:44.215477012Z"
+    description: A Helm chart for the Assist-IoT VPN Enabler
+    digest: 7c815f6ac5fa081553e22efda977c5c5ea578a7ffdf847058264629f86f4526c
+    name: vpn-enabler
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/vpn-enabler-0.2.5/vpn-enabler-0.2.5.tgz
+    version: 0.2.5
+  - apiVersion: v2
+    appVersion: 1.0.0
     created: "2022-01-14T09:59:49.318101943Z"
     description: A Helm chart for the Assist-IoT VPN Enabler
     digest: 13bd077cc9976eac0cbeac81a8258d7682e9ff4da6c71c9516e01d4b24ff375e
