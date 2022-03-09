@@ -45,6 +45,11 @@ spec:
               value: {{ .Values.mongoDbUser }}
             - name: MONGODB_PASS
               value: {{ .Values.mongoDbPass }}
+	  resources:
+            requests:
+	      {{- with .Values.wgApi }}
+              cpu: {{ .cpu }}
+              memory: {{ .memory }}
           securityContext:
             capabilities:
               add:
