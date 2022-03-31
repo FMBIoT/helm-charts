@@ -32,4 +32,14 @@ mongoDbPort: 27017
 mongoDbUser: user
 mongoDbPass: p4ssw0rd
 
+wgApi:
+  memory: 100Mi
+  cpu: 1
+  replicas: 1
+mongo:
+  memory: 100Mi
+  cpu: 2
+  replicas: 1
+
+
 mongoDBStorage: "50Mi"
