@@ -20,6 +20,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/openldap-0.3.0/openldap-0.3.0.tgz
     version: 0.3.0
+  prometheus-federate:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-03-31T11:05:27.59334012Z"
+    description: Prometheus deployment for the smart-orchestator
+    digest: 0297de0e78cc79b6f0dd311b55eb7e5f980bcbebf6a2d5959898b3574431f472
+    name: prometheus-federate
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/prometheus-federate-0.1.0/prometheus-federate-0.1.0.tgz
+    version: 0.1.0
   prueba:
   - apiVersion: v2
     appVersion: 1.0.0
