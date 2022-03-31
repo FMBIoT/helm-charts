@@ -34,6 +34,16 @@ entries:
   smart-orchestator:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-03-31T10:31:29.002788816Z"
+    description: A smart-orchestator for the assist project
+    digest: 1de342c0980382d284c918bb6d324edaf49f5505ed435313b343715cf146799f
+    name: smart-orchestator
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/smart-orchestator-0.1.1/smart-orchestator-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-03-31T10:13:40.22355838Z"
     description: A smart-orchestator for the assist project
     digest: 9d085453d00823dc2b827d0b393edaf4244e94d939d6f1ee62f2346f4c25fe2f
