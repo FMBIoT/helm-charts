@@ -32,7 +32,7 @@ spec:
       serviceAccountName: assist-api
       containers:
         - name: osm-api
-          image: fmbiot/osm-api:1.2.4
+          image: fmbiot/osm-api:1.2.8
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5001
