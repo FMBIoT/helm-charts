@@ -3,6 +3,16 @@ entries:
   dashboard:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-04-26T13:12:53.029031455Z"
+    description: A Helm chart of the Assist-IoT's tactile dashboard
+    digest: 7d8ec0151d6da0eb1d815ddddf6497ee2be307ee04db3bea306c118defab4492
+    name: dashboard
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/dashboard-0.2.0/dashboard-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-04-26T09:05:14.877317826Z"
     description: A Helm chart of the Assist-IoT's tactile dashboard
     digest: 0f9741b04ea48429a0068c7d9aa6e7a437df591b5133521abf813222c85b67e3
