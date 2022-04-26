@@ -27,12 +27,12 @@ dashboard:
   replicaCount: 1
   service1:
     type: NodePort
+    nodePort: 30280
     port: 80
     containerPort: 80
     targetPort: 80
     protocol: TCP
 
-  # TODO add env_vars
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -70,6 +70,7 @@ backend:
   replicaCount: 1
   service1:
     type: NodePort
+    nodePort: 30281
     port: 8080
     containerPort: 8080
     targetPort: 8080
@@ -111,6 +112,7 @@ db:
   replicaCount: 1
   service1:
     type: NodePort
+    nodePort: 30282
     port: 5432
     containerPort: 5432
     targetPort: 5432

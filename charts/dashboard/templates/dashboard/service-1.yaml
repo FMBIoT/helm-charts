@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "dashboard.name" . }}-svc1
+  name: {{ include "dashboard.name" . }}
   labels:
     {{- include "dashboard.labels" . | nindent 4 }}
 spec:
@@ -10,5 +10,8 @@ spec:
     - port: {{ .Values.dashboard.service1.port }}
       targetPort: {{ .Values.dashboard.service1.targetPort }}
       protocol: {{ .Values.dashboard.service1.protocol }}
+      {{- if eq .Values.dashboard.service1.type "NodePort" }}
+      nodePort: {{ .Values.dashboard.service1.nodePort }}
+      {{ end }}
   selector:
     {{- include "dashboard.selectorLabels" . | nindent 4 }}

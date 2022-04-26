@@ -10,5 +10,8 @@ spec:
     - port: {{ .Values.backend.service1.port }}
       targetPort: {{ .Values.backend.service1.targetPort }}
       protocol: {{ .Values.backend.service1.protocol }}
+      {{- if eq .Values.backend.service1.type "NodePort" }}
+      nodePort: {{ .Values.backend.service1.nodePort }}
+      {{ end }}
   selector:
     {{- include "backend.selectorLabels" . | nindent 4 }}

@@ -1,17 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "db.name" . }}
+  name: {{ include "db.name" . }}-headless
   labels:
     {{- include "db.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.db.service1.type }}
+  type: ClusterIP
+  clusterIP: None
+  publishNotReadyAddresses: true
   ports:
     - port: {{ .Values.db.service1.port }}
       targetPort: {{ .Values.db.service1.targetPort }}
       protocol: {{ .Values.db.service1.protocol }}
-      {{- if eq .Values.db.service1.type "NodePort" }}
-      nodePort: {{ .Values.db.service1.nodePort }}
-      {{ end }}
   selector:
     {{- include "db.selectorLabels" . | nindent 4 }}
