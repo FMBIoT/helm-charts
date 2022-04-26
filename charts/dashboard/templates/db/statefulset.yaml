@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ include "db.name" . }}
+  labels:
+    {{- include "db.labels" . | nindent 4 }}
+spec:
+  serviceName: {{ include "db.name" . }}
+  {{- if not .Values.db.autoscaling.enabled }}
+  replicas: {{ .Values.db.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "db.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "db.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Values.db.name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.db.image.repository }}:{{ .Values.db.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.db.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.db.service1.containerPort }}
+              protocol: {{ .Values.db.service1.protocol }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.db.postgresUser }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.db.postgresPassword }}
+            - name: POSTGRES_DB
+              value: {{ .Values.db.postgresDb }}
+          volumeMounts:
+            - name: {{ .Release.Name }}-db-persistent-storage-claim
+              mountPath: /var/lib/postgresql/data
+      # volumes:
+      #   - name: {{ .Release.Name }}-db-persistent-storage-claim
+      #     persistentVolumeClaim:
+      #       claimName: {{ .Release.Name }}-db-persistent-storage-claim #TODO
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+  volumeClaimTemplates:
+    - metadata:
+        name: {{ .Release.Name }}-db-persistent-storage-claim
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: {{ .Values.db.storageSize }}
