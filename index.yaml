@@ -104,6 +104,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/smart-orchestator-0.1.0/smart-orchestator-0.1.0.tgz
     version: 0.1.0
+  vpn:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-04-27T19:08:29.67911752Z"
+    description: A Helm chart for the Assist-IoT&#x27;s VPN Enabler
+    digest: 5263cc8e0bfdbddd7d9418d5dcb911301a6ac724b952e6f6e281a912fb5ce14d
+    name: vpn
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/vpn-1.0.0/vpn-1.0.0.tgz
+    version: 1.0.0
   vpn-enabler:
   - apiVersion: v2
     appVersion: 1.0.0
