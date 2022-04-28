@@ -35,35 +35,35 @@ spec:
               protocol: {{ .Values.api.wireguardSvc.protocol }}
           resources:
             {{- toYaml .Values.api.resources | nindent 12 }}
-          {{- with .Values.api.envVars }}
           env:
             - name: API_PORT
-              value: {{ .wgApiPort | quote }}
-            - name: SERVER_IP
-              value: {{ .serverIP }}
-            - name: WG_PRIVATE_KEY
-              value: {{ .wgPrivateKey }}
-            - name: WG_SUBNET
-              value: {{ .wgSubnet }}
+              value: {{ .Values.api.apiSvc.containerPort | quote }}
             - name: WG_PORT
-              value: {{ .wireguardPort | quote }}
+              value: {{ .Values.api.wireguardSvc.containerPort | quote }}
+            {{- with .Values.api.envVars }}
+            - name: SERVER_IP
+              value: {{ .serverIP | quote }}
+            - name: WG_PRIVATE_KEY
+              value: {{ .wgPrivateKey | quote }}
+            - name: WG_SUBNET
+              value: {{ .wgSubnet | quote }}
             - name: PEER_ALLOWED_IPS
-              value: {{ .peerAllowedIPs }}
+              value: {{ .peerAllowedIPs | quote }}
             - name: MONGODB_HOST
-              value: {{ .mongoDbHost }}
+              value: {{ .mongoDbHost | quote }}
             - name: MONGODB_PORT
               value: {{ .mongoDbPort | quote }}
             - name: MONGODB_USER
-              value: {{ .mongoDbUser }}
+              value: {{ .mongoDbUser | quote }}
             - name: MONGODB_PASS
-              value: {{ .mongoDbPass }}
+              value: {{ .mongoDbPass | quote }}
+            {{- end }}
           securityContext:
             capabilities:
               add:
                 - NET_ADMIN
                 - SYS_MODULE
             privileged: true
-          {{- end }}
       {{- with .Values.api.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

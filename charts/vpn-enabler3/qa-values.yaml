@@ -9,25 +9,27 @@ api:
   name: api
   tier: internal
   image:
-    repository: ravaga/wg-api
+    repository: ravaga/vpn-enabler
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "1.0"
+    tag: ""
 
   replicaCount: 1
-  service1:
+
+  apiSvc:
     type: NodePort
     nodePort: ""
     port: 3000
     targetPort: 3000
+    # this value will also be used for the container's API_PORT env var
     containerPort: 3000
     protocol: TCP
-
-  service2:
+  wireguardSvc:
     type: NodePort
     nodePort: ""
     port: 51820
     targetPort: 51820
+    # this value will also be used for the container's WG_PORT env var
     containerPort: 51820
     protocol: UDP
 
@@ -62,11 +64,13 @@ api:
     # runAsUser: 1000
 
   envVars:
+    # wgApiPort: 3000
+    # wireguardPort: 51820
     wgPrivateKey: "qAuVUEbmcI3ofLsjJmQ6+RtEejoNX+WHs7QOsIccn0Y="
     serverIP: "192.168.1.1"
     wgSubnet: "192.168.2.1/24"
     peerAllowedIPs: "0.0.0.0/0,::/0"
-    # Mongo service
+    # db component service
     mongoDbHost: vpn-db
     mongoDbPort: 27017
     mongoDbUser: user
@@ -84,11 +88,11 @@ db:
     repository: mongo
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "5.0.8"
+    tag: "4.4.13"
 
   replicaCount: 1
   service1:
-    type: NodePort
+    type: ClusterIP
     nodePort: ""
     port: 27017
     targetPort: 27017
@@ -139,4 +143,3 @@ db:
   nodeSelector: {}
   tolerations: []
   affinity: {}
-
