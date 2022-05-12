@@ -21,6 +21,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/dashboard-0.1.0/dashboard-0.1.0.tgz
     version: 0.1.0
+  ltse:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-05-12T07:12:39.213557999Z"
+    description: LTSE Helm chart
+    digest: 978e6d3366ad15215c6de84efc1ae64610f9f8588f62f1773d12579d79b36e78
+    name: ltse
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/ltse-0.1.0/ltse-0.1.0.tgz
+    version: 0.1.0
   openldap:
   - apiVersion: v1
     appVersion: 2.4.44
