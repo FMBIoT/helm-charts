@@ -1,5 +1,16 @@
 apiVersion: v1
 entries:
+  businesskpi:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-06-09T07:26:15.915417999Z"
+    description: A Helm chart for Kubernetes
+    digest: a56bc28425769a453b407fc4fecf38df39d4a2b9cf8ec80cad73afb8e26ce2e8
+    name: businesskpi
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/businesskpi-0.1.0/businesskpi-0.1.0.tgz
+    version: 0.1.0
   dashboard:
   - apiVersion: v2
     appVersion: 0.1.0
