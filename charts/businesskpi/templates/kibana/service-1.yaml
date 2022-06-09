@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "kibana.name" . }}-svc1
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "kibana.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.kibana.service1.type }}
+  ports:
+    - port: {{ .Values.kibana.service1.port }}
+      targetPort: {{ .Values.kibana.service1.targetPort }}
+      protocol: {{ .Values.kibana.service1.protocol }}
+      {{- if and (or (eq .Values.kibana.service1.type "NodePort") (eq .Values.kibana.service1.type "LoadBalancer")) (not (empty .Values.kibana.service1.nodePort)) }}
+      nodePort: {{ .Values.kibana.service1.nodePort }}
+      {{ end }}
+  selector:
+    {{- include "kibana.selectorLabels" . | nindent 4 }}

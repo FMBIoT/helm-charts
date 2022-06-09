@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "kibana.name" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "kibana.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.kibana.autoscaling.enabled }}
+  replicas: {{ .Values.kibana.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "kibana.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "kibana.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.kibana.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.kibana.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Values.kibana.name }}
+          securityContext:
+            {{- toYaml .Values.kibana.securityContext | nindent 12 }}
+          image: "{{ .Values.kibana.image.repository }}:{{ .Values.kibana.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.kibana.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.kibana.service1.containerPort }}
+              protocol: {{ .Values.kibana.service1.protocol }}
+          resources:
+            {{- toYaml .Values.kibana.resources | nindent 12 }}
+          {{- with .Values.kibana.envVars }}
+          env:
+            - name: ELASTICSEARCH_HOSTS
+              value: {{ .elasticsearchHost | quote }}
+          {{- end }}
+      {{- with .Values.kibana.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.kibana.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.kibana.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
