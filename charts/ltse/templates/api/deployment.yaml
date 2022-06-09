@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "api.name" . }}
+  namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "api.labels" . | nindent 4 }}
 spec:
@@ -33,6 +34,25 @@ spec:
               protocol: {{ .Values.api.service1.protocol }}
           resources:
             {{- toYaml .Values.api.resources | nindent 12 }}
+          {{- with .Values.api.envVars }}
+          env:
+            - name: POSTGRESQL_HOST
+              value: {{ .postgresqlHost | quote }}
+            - name: POSTGRESQL_PORT
+              value: {{ .postgresqlPort | quote }}
+            - name: POSTGRESQL_USER
+              value: {{ .postgresqlUser | quote }}
+            - name: POSTGRESQL_PASS
+              value: {{ .postgresqlPassword | quote }}
+            - name: ELASTIC_HOST
+              value: {{ .elasticHost | quote }}
+            - name: ELASTIC_PORT
+              value: {{ .elasticPort | quote }}
+            - name: POSTGREST_HOST
+              value: {{ .postgrestHost | quote }}
+            - name: POSTGREST_PORT
+              value: {{ .postgrestPort | quote }}
+          {{- end }}
       {{- with .Values.api.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

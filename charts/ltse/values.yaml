@@ -23,7 +23,6 @@ api:
     containerPort: 8080
     protocol: TCP
 
-
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -53,6 +52,16 @@ api:
     # readOnlyRootFilesystem: true
     # runAsNonRoot: true
     # runAsUser: 1000
+  
+  envVars:
+    postgresqlHost: ltse-postgres
+    postgresqlPort: 5432
+    postgresqlUser: postgres
+    postgresqlPassword: 4ss1st10t
+    elasticHost: ltse-elastic
+    elasticPort: 9200
+    postgrestHost: ltse-postgrest
+    postgrestPort: 3000
 
   imagePullSecrets: []
   nodeSelector: {}
@@ -77,7 +86,6 @@ postgrest:
     containerPort: 3000
     protocol: TCP
 
-
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
@@ -89,9 +97,6 @@ postgrest:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
-  cpu: 1
-  memory: 128Mi
-  replicas: 1
 
   autoscaling:
     enabled: false
@@ -253,4 +258,3 @@ elastic:
   nodeSelector: {}
   tolerations: []
   affinity: {}
-
