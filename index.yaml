@@ -35,6 +35,16 @@ entries:
   ltse:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2022-06-13T14:43:42.686058608Z"
+    description: LTSE Helm chart
+    digest: 3677175518c8ad6fa1e8fef79b202a081ad78252c1ee0426295a8544ef4dfcb6
+    name: ltse
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/ltse-0.3.0/ltse-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2022-06-09T10:50:52.665752293Z"
     description: LTSE Helm chart
     digest: 8ea67efb4c18a46444e2460bf3dab5d9e721bd803ae8d968fd9017b42f60fa5f
