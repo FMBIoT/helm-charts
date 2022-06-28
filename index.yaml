@@ -32,6 +32,18 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/dashboard-0.1.0/dashboard-0.1.0.tgz
     version: 0.1.0
+  edb:
+  - apiVersion: v1
+    appVersion: 1.11.0
+    created: "2022-06-28T11:16:20.068138911Z"
+    description: Edge Data Broker is a high-performance, distributed MQTT message
+      broker based on VerneMQ
+    digest: 82e0763bae189b0b952cb94d21ec41a007b187d64991186b3e59e8ffcf5046f8
+    icon: http://www.stickpng.com/assets/thumbs/58482b21cef1014c0b5e4a24.png
+    name: edb
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/edb-1.6.6/edb-1.6.6.tgz
+    version: 1.6.6
   ltse:
   - apiVersion: v2
     appVersion: 0.1.0
