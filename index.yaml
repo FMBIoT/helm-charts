@@ -35,6 +35,17 @@ entries:
   edb:
   - apiVersion: v1
     appVersion: 1.11.0
+    created: "2022-07-06T09:15:12.665575538Z"
+    description: Edge Data Broker is a high-performance, distributed MQTT message
+      broker based on VerneMQ
+    digest: ab4763d9de6e4180e5ae8cab9e701e4ee2b1e09458e321e2f52c74a714ab20a1
+    icon: http://www.stickpng.com/assets/thumbs/58482b21cef1014c0b5e4a24.png
+    name: edb
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/edb-1.6.8/edb-1.6.8.tgz
+    version: 1.6.8
+  - apiVersion: v1
+    appVersion: 1.11.0
     created: "2022-06-28T13:01:57.136840086Z"
     description: Edge Data Broker is a high-performance, distributed MQTT message
       broker based on VerneMQ
