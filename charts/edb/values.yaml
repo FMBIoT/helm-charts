@@ -5,7 +5,7 @@
 replicaCount: 2
 
 image:
-  repository: localhost:32000/edb
+  repository: kostasiccs/vernemq
   tag: latest
   pullPolicy: IfNotPresent
 
@@ -13,7 +13,7 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceMonitor:
-  create: true
+  create: false
 
 service:
   # NodePort - Listen to a port on nodes and forward to the service.
