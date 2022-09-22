@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "smartOrchestrator.name" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    {{- include "smartOrchestrator.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.smartOrchestrator.autoscaling.enabled }}
+  replicas: {{ .Values.smartOrchestrator.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "smartOrchestrator.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "smartOrchestrator.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: assist-api
+      {{- with .Values.smartOrchestrator.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.smartOrchestrator.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.smartOrchestrator.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.smartOrchestrator.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      securityContext:
+        {{- toYaml .Values.smartOrchestrator.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Values.smartOrchestrator.name }}
+          securityContext:
+            {{- toYaml .Values.smartOrchestrator.securityContext | nindent 12 }}
+          image: "{{ .Values.smartOrchestrator.image.repository }}:{{ .Values.smartOrchestrator.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.smartOrchestrator.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.smartOrchestrator.service.containerPort }}
+              protocol: {{ .Values.smartOrchestrator.service.protocol }}
+          resources:
+            {{- toYaml .Values.smartOrchestrator.resources | nindent 12 }}
+          {{- with .Values.smartOrchestrator.envVars }}
+          env:
+            - name: MONGODB_URI
+              value: {{ .mongoUri | quote }}
+            - name: OSM_HOST
+              value: {{ .osmHost | quote }}
+            - name: OSM_PORT
+              value: {{ .osmPort | quote }}
+            - name: PORT
+              value: {{ .port | quote }}
+            - name: SCHEDULER_IMAGE
+              value: {{ .schedulerImage | quote }}
+          {{- end }}
+          securityContext:
+            {{ toYaml .Values.securityContext | nindent 8 }}
+          volumes:
+            - name: task-pv-storage
+            persistentVolumeClaim:
+              claimName: {{ .Values.persistenVolumeClaim.name | quote }}

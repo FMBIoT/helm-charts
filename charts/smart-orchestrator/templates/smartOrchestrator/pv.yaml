@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ .Values.persistentVolume.name | quote }}
+  labels:
+    {{- include "smartOrchestrator.selectorLabels" . | nindent 8 }}
+spec:
+  accessModes:
+    - {{ .Values.persistentVolume.accessMode | quote }}
+  capacity:
+    storage: {{ .Values.persistentVolume.storage | quote }}
+  hostPath:
+    path: {{ .Values.persistentVolume.path | quote }}
+  storageClassName:  {{ .Values.persistentVolume.storageClassName | quote }}
