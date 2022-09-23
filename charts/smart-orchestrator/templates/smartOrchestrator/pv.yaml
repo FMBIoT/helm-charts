@@ -1,4 +1,4 @@
-kind: PersistentVolumeClaim
+kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: {{ .Values.persistentVolume.name | quote }}
