@@ -31,18 +31,18 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Name of the component smartOrchestrator.
+Name of the component smartorchestrator.
 */}}
-{{- define "smartOrchestrator.name" -}}
-{{ include "enabler.name" . }}-smartOrchestrator
+{{- define "smartorchestrator.name" -}}
+{{ include "enabler.name" . }}-smartorchestrator
 {{- end }}
 
 {{/*
-Component smartOrchestrator labels
+Component smartorchestrator labels
 */}}
-{{- define "smartOrchestrator.labels" -}}
+{{- define "smartorchestrator.labels" -}}
 helm.sh/chart: {{ include "enabler.chart" . }}
-{{ include "smartOrchestrator.selectorLabels" . }}
+{{ include "smartorchestrator.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -50,14 +50,14 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Component smartOrchestrator selector labels
+Component smartorchestrator selector labels
 */}}
-{{- define "smartOrchestrator.selectorLabels" -}}
+{{- define "smartorchestrator.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "enabler.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 enabler: {{ .Chart.Name }}
-component: {{ .Values.smartOrchestrator.name }}
+component: {{ .Values.smartorchestrator.name }}
 isMainInterface: "yes"
-tier: {{ .Values.smartOrchestrator.tier}}
+tier: {{ .Values.smartorchestrator.tier}}
 {{- end }}
 

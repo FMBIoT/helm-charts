@@ -5,8 +5,8 @@
 nameOverride: ""
 fullnameOverride: ""
 
-smartOrchestrator:
-  name: smartOrchestrator
+smartorchestrator:
+  name: smartorchestrator
   tier: internal
   image:
     repository: fmbiot/osm-api
