@@ -65,4 +65,4 @@ spec:
           volumes:
             - name: task-pv-storage
               persistentVolumeClaim:
-                claimName: {{ .Values.persistenVolumeClaim.name | quote }}
+                claimName: pv-claim-api
