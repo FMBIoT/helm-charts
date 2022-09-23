@@ -221,6 +221,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/smartOrchestrator-2.0.0/smartOrchestrator-2.0.0.tgz
     version: 2.0.0
+  smartorchestrator:
+  - apiVersion: v2
+    appVersion: 2.0.0
+    created: "2022-09-23T10:07:41.761989844Z"
+    description: A Helm chart for the smartorchestrator API
+    digest: c3a6083c2718576b64801c4c83729f7402a238c33348f8e08ac987ef9eb51d82
+    name: smartorchestrator
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/smartorchestrator-2.0.4/smartorchestrator-2.0.4.tgz
+    version: 2.0.4
   vpn:
   - apiVersion: v2
     appVersion: 1.0.0
