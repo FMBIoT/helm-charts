@@ -62,7 +62,7 @@ spec:
           {{- end }}
           securityContext:
             {{ toYaml .Values.securityContext | nindent 8 }}
-          volumes:
-            - name: task-pv-storage
-              persistentVolumeClaim:
-                claimName: pv-claim-api
+      volumes:
+        - name: task-pv-storage
+          persistentVolumeClaim:
+            claimName: pv-claim-api
