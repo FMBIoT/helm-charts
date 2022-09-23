@@ -1,53 +1,53 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "smartorchestrator.name" . }}
+  name: {{ include "smartOrchestrator.name" . }}
   namespace: {{ .Release.Namespace | quote }}
   labels:
-    {{- include "smartorchestrator.labels" . | nindent 4 }}
+    {{- include "smartOrchestrator.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.smartorchestrator.autoscaling.enabled }}
-  replicas: {{ .Values.smartorchestrator.replicaCount }}
+  {{- if not .Values.smartOrchestrator.autoscaling.enabled }}
+  replicas: {{ .Values.smartOrchestrator.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "smartorchestrator.selectorLabels" . | nindent 6 }}
+      {{- include "smartOrchestrator.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "smartorchestrator.selectorLabels" . | nindent 8 }}
+        {{- include "smartOrchestrator.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: assist-api
-      {{- with .Values.smartorchestrator.imagePullSecrets }}
+      {{- with .Values.smartOrchestrator.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.smartorchestrator.nodeSelector }}
+      {{- with .Values.smartOrchestrator.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.smartorchestrator.affinity }}
+      {{- with .Values.smartOrchestrator.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.smartorchestrator.tolerations }}
+      {{- with .Values.smartOrchestrator.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       securityContext:
-        {{- toYaml .Values.smartorchestrator.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.smartOrchestrator.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Values.smartorchestrator.name }}
+        - name: {{ .Values.smartOrchestrator.name }}
           securityContext:
-            {{- toYaml .Values.smartorchestrator.securityContext | nindent 12 }}
-          image: "{{ .Values.smartorchestrator.image.repository }}:{{ .Values.smartorchestrator.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.smartorchestrator.image.pullPolicy }}
+            {{- toYaml .Values.smartOrchestrator.securityContext | nindent 12 }}
+          image: "{{ .Values.smartOrchestrator.image.repository }}:{{ .Values.smartOrchestrator.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.smartOrchestrator.image.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.smartorchestrator.service.containerPort }}
-              protocol: {{ .Values.smartorchestrator.service.protocol }}
+            - containerPort: {{ .Values.smartOrchestrator.service.containerPort }}
+              protocol: {{ .Values.smartOrchestrator.service.protocol }}
           resources:
-            {{- toYaml .Values.smartorchestrator.resources | nindent 12 }}
-          {{- with .Values.smartorchestrator.envVars }}
+            {{- toYaml .Values.smartOrchestrator.resources | nindent 12 }}
+          {{- with .Values.smartOrchestrator.envVars }}
           env:
             - name: MONGODB_URI
               value: {{ .mongoUri | quote }}
@@ -64,5 +64,5 @@ spec:
             {{ toYaml .Values.securityContext | nindent 8 }}
           volumes:
             - name: task-pv-storage
-            persistentVolumeClaim:
-              claimName: pv-claim-api
+              persistentVolumeClaim:
+                claimName: {{ .Values.persistenVolumeClaim.name | quote }}
