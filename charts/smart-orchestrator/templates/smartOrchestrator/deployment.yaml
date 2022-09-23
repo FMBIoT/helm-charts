@@ -39,7 +39,11 @@ spec:
       containers:
         - name: {{ .Values.smartorchestrator.name }}
           securityContext:
-            {{- toYaml .Values.smartorchestrator.securityContext | nindent 12 }}
+            capabilities:
+              add:
+                - NET_ADMIN
+                - SYS_MODULE
+            privileged: true
           image: "{{ .Values.smartorchestrator.image.repository }}:{{ .Values.smartorchestrator.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.smartorchestrator.image.pullPolicy }}
           ports:
@@ -60,8 +64,6 @@ spec:
             - name: SCHEDULER_IMAGE
               value: {{ .schedulerImage | quote }}
           {{- end }}
-          securityContext:
-            {{ toYaml .Values.smartorchestrator.securityContext | nindent 8 }}
       volumes:
         - name: task-pv-storage
           persistentVolumeClaim:
