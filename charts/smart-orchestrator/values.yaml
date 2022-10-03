@@ -12,7 +12,7 @@ smartorchestrator:
     repository: fmbiot/osm-api
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "2.0.0"
+    tag: "2.0.9"
 
   replicaCount: 1
   service:
