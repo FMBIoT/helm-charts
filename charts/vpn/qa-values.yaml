@@ -1,0 +1,145 @@
+# Default values for enabler.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+api:
+  name: api
+  tier: internal
+  image:
+    repository: ravaga/wg-api
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "1.0"
+
+  replicaCount: 1
+
+  apiSvc:
+    type: NodePort
+    nodePort: ""
+    port: 3000
+    targetPort: 3000
+    # this value will also be used for the container's API_PORT env var
+    containerPort: 3000
+    protocol: TCP
+  wireguardSvc:
+    type: NodePort
+    nodePort: ""
+    port: 51820
+    targetPort: 51820
+    # this value will also be used for the container's WG_PORT env var
+    containerPort: 51820
+    protocol: UDP
+
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  envVars:
+    # wgApiPort: 3000
+    # wireguardPort: 51820
+    wgPrivateKey: "qAuVUEbmcI3ofLsjJmQ6+RtEejoNX+WHs7QOsIccn0Y="
+    serverIP: "192.168.1.1"
+    wgSubnet: "192.168.2.1/24"
+    peerAllowedIPs: "0.0.0.0/0,::/0"
+    # db component service
+    mongoDbHost: vpn-db
+    mongoDbPort: 27017
+    mongoDbUser: user
+    mongoDbPass: p4ssw0rd
+
+  imagePullSecrets: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+db:
+  name: db
+  tier: internal
+  image:
+    repository: mongo
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "4.4.13"
+
+  replicaCount: 1
+  service1:
+    type: ClusterIP
+    nodePort: ""
+    port: 27017
+    targetPort: 27017
+    containerPort: 27017
+    protocol: TCP
+
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+  envVars:
+    mongoDbUser: user
+    mongoDbPass: p4ssw0rd
+
+  persistence:
+    # mountPath: /path/in/container
+    accessModes:
+      - ReadWriteOnce
+    size: 25Mi
+
+  imagePullSecrets: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

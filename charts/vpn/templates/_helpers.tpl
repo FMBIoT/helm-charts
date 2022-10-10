@@ -31,18 +31,18 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
-Name of the component smartorchestrator.
+Name of the component api.
 */}}
-{{- define "smartorchestrator.name" -}}
-{{ include "enabler.name" . }}-smartorchestrator
+{{- define "api.name" -}}
+{{ include "enabler.name" . }}-api
 {{- end }}
 
 {{/*
-Component smartorchestrator labels
+Component api labels
 */}}
-{{- define "smartorchestrator.labels" -}}
+{{- define "api.labels" -}}
 helm.sh/chart: {{ include "enabler.chart" . }}
-{{ include "smartorchestrator.selectorLabels" . }}
+{{ include "api.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -50,14 +50,45 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
 {{/*
-Component smartorchestrator selector labels
+Component api selector labels
 */}}
-{{- define "smartorchestrator.selectorLabels" -}}
+{{- define "api.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "enabler.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 enabler: {{ .Chart.Name }}
-component: {{ .Values.smartorchestrator.name }}
+component: {{ .Values.api.name }}
 isMainInterface: "yes"
-tier: {{ .Values.smartorchestrator.tier}}
+tier: {{ .Values.api.tier}}
+{{- end }}
+
+{{/*
+Name of the component db.
+*/}}
+{{- define "db.name" -}}
+{{ include "enabler.name" . }}-db
+{{- end }}
+
+{{/*
+Component db labels
+*/}}
+{{- define "db.labels" -}}
+helm.sh/chart: {{ include "enabler.chart" . }}
+{{ include "db.selectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+{{/*
+Component db selector labels
+*/}}
+{{- define "db.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "enabler.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+enabler: {{ .Chart.Name }}
+component: {{ .Values.db.name }}
+isMainInterface: "no"
+tier: {{ .Values.db.tier}}
 {{- end }}
 

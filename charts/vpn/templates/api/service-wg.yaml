@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "api.name" . }}-wireguard
+  labels:
+    {{- include "api.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.api.wireguardSvc.type }}
+  ports:
+    - port: {{ .Values.api.wireguardSvc.port }}
+      targetPort: {{ .Values.api.wireguardSvc.targetPort }}
+      protocol: {{ .Values.api.wireguardSvc.protocol }}
+      {{- if and (or (eq .Values.api.wireguardSvc.type "NodePort") (eq .Values.api.wireguardSvc.type "LoadBalancer")) (not (empty .Values.api.wireguardSvc.nodePort)) }}
+      nodePort: {{ .Values.api.wireguardSvc.nodePort }}
+      {{ end }}
+  selector:
+    {{- include "api.selectorLabels" . | nindent 4 }}
