@@ -444,4 +444,15 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/vpn-enabler-0.2.0/vpn-enabler-0.2.0.tgz
     version: 0.2.0
+  vpn-last:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-10T06:54:08.12119649Z"
+    description: A Helm chart for the Assist-IoT's VPN Enabler
+    digest: 906ef730b0f885f748d2faedfb6e6178537900f87deeabc97ddde1a417ff22f8
+    name: vpn-last
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/vpn-last-1.0.1/vpn-last-1.0.1.tgz
+    version: 1.0.1
 generated: "2022-01-07T09:01:23.36670239Z"
