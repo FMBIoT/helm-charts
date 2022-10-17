@@ -466,4 +466,15 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/vpn-last-1.0.1/vpn-last-1.0.1.tgz
     version: 1.0.1
+  vpn-rafa:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2022-10-17T11:33:43.895298701Z"
+    description: A Helm chart for the ASSIST-IoT&#x27;s VPN Enabler
+    digest: 36f11baf38bc3dbb9bab1723c731f1b7ed2b32f514b49df0189295c99acff87d
+    name: vpn-rafa
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/vpn-rafa-1.1.0/vpn-rafa-1.1.0.tgz
+    version: 1.1.0
 generated: "2022-01-07T09:01:23.36670239Z"
