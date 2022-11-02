@@ -66,6 +66,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/edb-1.6.6/edb-1.6.6.tgz
     version: 1.6.6
+  helm-api:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2022-11-02T11:30:09.140410684Z"
+    description: A Helm chart for Kubernetes
+    digest: d03d226478b15f436b18fc43d7faa88ee6c1fa7eeff5e67b32b1bddacad9151d
+    name: helm-api
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/helm-api-0.1.0/helm-api-0.1.0.tgz
+    version: 0.1.0
   ltse:
   - apiVersion: v2
     appVersion: 0.1.0
