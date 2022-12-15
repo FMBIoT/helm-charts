@@ -77,6 +77,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/helm-api-0.1.0/helm-api-0.1.0.tgz
     version: 0.1.0
+  ltse:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2022-12-15T08:58:31.674401879Z"
+    description: The Helm chart for the Long Term Data Storage Enabler
+    digest: ee9634b4dd51366854883925476649a1883277604daea1337d7713a145b58b53
+    name: ltse
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/ltse-0.4.0/ltse-0.4.0.tgz
+    version: 0.4.0
   openldap:
   - apiVersion: v1
     appVersion: 2.4.44
