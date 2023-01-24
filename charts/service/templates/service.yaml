@@ -1,0 +1,10 @@
+apiVersion: fogguru.eu/v1                                                                                
+kind: MultiClusterService                                                                                
+metadata:                                                                                                
+  name: vernemq                                                                                       
+  annotations:                                                                                           
+    io.cilium/global-service: "true"                                                                     
+spec:
+  ports:
+  - name: mqtt
+    port: 1883
