@@ -130,6 +130,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/prueba-0.2.3/prueba-0.2.3.tgz
     version: 0.2.3
+  service:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-01-24T15:28:38.881367295Z"
+    description: A Helm chart for the Assist-IoT VPN Enabler
+    digest: 6d3b58290a192bd5c68f86f1ec665f9efccaa2962d523ef724c0761dcef4de6a
+    name: service
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/service-0.2.3/service-0.2.3.tgz
+    version: 0.2.3
   smart-orchestator:
   - apiVersion: v2
     appVersion: 0.1.0
