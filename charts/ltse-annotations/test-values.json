@@ -1,0 +1,10 @@
+{
+  "api": {
+    "service": {
+      "annotations": {
+        "io.cilium/global-service": "true",
+        "io.cilium/service-affinity": "remote"
+      }
+    }
+  }
+}
