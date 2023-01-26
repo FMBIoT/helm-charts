@@ -91,6 +91,16 @@ entries:
   ltse-annotations:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2023-01-26T16:27:37.871225027Z"
+    description: The Helm chart for the Long Term Data Storage Enabler
+    digest: 512d65c2eb87670f8a72f4f4dff9c7ba81d11184de22d6b965fff540390b7fc7
+    name: ltse-annotations
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/ltse-annotations-0.3.0/ltse-annotations-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2023-01-26T12:21:49.331118581Z"
     description: The Helm chart for the Long Term Data Storage Enabler
     digest: d4d25ce33d33ed7c48974076ee636749e8e84b7468f9d708f8e4e5dd71fa24ce
