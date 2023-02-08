@@ -4,6 +4,8 @@ kind: MultiClusterService
 metadata:
   name: {{ include "api.fullname" . }}
   namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    io.cilium/global-service: "true"
   labels:
     {{- include "api.labels" . | nindent 4 }}
 spec:
