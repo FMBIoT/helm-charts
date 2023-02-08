@@ -31,6 +31,14 @@ Create chart name and version as used by the chart label.
 {{- end }}
 
 {{/*
+Cilium Multi-cluster global service annotations
+*/}}
+{{- define "globalServiceAnnotations" -}}
+io.cilium/global-service: "true"
+io.cilium/service-affinity: remote
+{{- end }}
+
+{{/*
 Name of the component api.
 */}}
 {{- define "api.name" -}}

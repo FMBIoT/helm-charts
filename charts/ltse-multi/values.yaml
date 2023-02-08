@@ -8,7 +8,6 @@ nameOverride: ""
 fullnameOverride: ""
 # Deploy all the components in the same node
 enablerNodeSelector: {}
-
 # Cilium Multi-cluster global service
 globalService: false
 

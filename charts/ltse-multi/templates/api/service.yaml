@@ -5,6 +5,10 @@ metadata:
   namespace: {{ .Release.Namespace | quote }}
   labels:
     {{- include "api.labels" . | nindent 4 }}
+  annotations:
+    {{- if .Values.globalService }}
+    {{- include "globalServiceAnnotations" . | nindent 4 }}
+    {{- end }}
 spec:
   type: {{ .Values.api.service.type }}
   ports:
@@ -14,6 +18,6 @@ spec:
       protocol: {{ .Values.api.service.protocol }}
       {{- if and (or (eq .Values.api.service.type "NodePort") (eq .Values.api.service.type "LoadBalancer")) (not (empty .Values.api.service.nodePort)) }}
       nodePort: {{ .Values.api.service.nodePort }}
-      {{ end }}
+      {{- end }}
   selector:
     {{- include "api.selectorLabels" . | nindent 4 }}
