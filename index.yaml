@@ -112,6 +112,16 @@ entries:
   ltse-multi:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2023-02-08T12:39:46.488312535Z"
+    description: The Helm chart for the Long Term Data Storage Enabler
+    digest: 166b85854d9827e4af0391ebefcfda498a966899517ecd7d468032cd91a6e12f
+    name: ltse-multi
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/ltse-multi-0.5.0/ltse-multi-0.5.0.tgz
+    version: 0.5.0
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2023-02-08T11:01:50.365777757Z"
     description: The Helm chart for the Long Term Data Storage Enabler
     digest: bc36ffd4cd68a15d75d1cecbd1b6c858da2559e7f08107908e87ba0d2cc6f998
