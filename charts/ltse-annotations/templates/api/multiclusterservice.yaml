@@ -1,9 +1,0 @@
-apiVersion: assist.eu/v1                                                                                
-kind: MultiClusterService                                                                                
-metadata:                                                                                                
-  name: ltse                                                                                       
-  annotations:                                                                                           
-    io.cilium/global-service: "true"                                                                     
-spec:
-  ports:
-  - port: 8080
