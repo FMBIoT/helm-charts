@@ -77,6 +77,17 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/helm-api-0.1.0/helm-api-0.1.0.tgz
     version: 0.1.0
+  ltse:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2023-02-10T09:41:05.665767754Z"
+    description: The Helm chart of the Long Term Data Storage Enabler
+    digest: 9f8a648ec5dc80dc164b73e3fbf0d5a99dfa3dd2a06d41841997a0523b978d65
+    name: ltse
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/ltse-1.0.0/ltse-1.0.0.tgz
+    version: 1.0.0
   prometheus-federate:
   - apiVersion: v2
     appVersion: 0.1.0
@@ -88,3 +99,4 @@ entries:
     urls:
     - https://github.com/FMBIoT/helm-charts/releases/download/prometheus-federate-0.1.0/prometheus-federate-0.1.0.tgz
     version: 0.1.0
+generated: "0001-01-01T00:00:00Z"
