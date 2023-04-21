@@ -3,6 +3,16 @@ entries:
   authorization:
   - apiVersion: v2
     appVersion: 0.1.0
+    created: "2023-04-21T09:12:12.303511349Z"
+    description: Authorization enabler
+    digest: eaf9a5bdafbeb6bcc370f55b0878449ca71ce07b664c0168bae98b1a471899a7
+    name: authorization
+    type: application
+    urls:
+    - https://github.com/FMBIoT/helm-charts/releases/download/authorization-0.1.1/authorization-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.1.0
     created: "2023-04-21T09:00:58.444873991Z"
     description: Authorization enabler
     digest: 1760d4e509948d5bce055e79525eca3121e2fbd75209aad48f0b1ceac23d2d11
