@@ -1,0 +1,55 @@
+{{- if .Values.pilot3a }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "authzclient.fullname" . }}
+  namespace: {{ .Release.Namespace | quote }}
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      initContainers:
+      - name: check-web-ready
+        image: alpine:latest
+        imagePullPolicy: IfNotPresent
+        command: ["sh", "-c", 'until (nc -zvw1 {{ include "authzweb.fullname" . }} {{ .Values.authzweb.service.port }} ); do sleep 3; done; exit 0']
+      {{- with .Values.authzclient.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: authzclient
+        securityContext:
+          {{- toYaml .Values.authzclient.securityContext | nindent 12 }}
+        image: "{{ .Values.authzclient.image.repository }}:{{ .Values.authzclient.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.authzclient.image.pullPolicy }}
+        env:
+        - name: MYSQL_HOST
+          value: {{ include "authzdatabase.fullname" . | quote }}
+        - name: AUTHSERVER_HOST
+          value: {{ include "authzweb.fullname" . | quote }}
+        - name: AUTHSERVER_PORT
+          value: {{ .Values.authzweb.service.port | quote }}              
+        {{- with .Values.authzweb.envVars }}
+        - name: AUTHSERVER_USER
+          value: {{ .authserver_user | quote }}
+        - name: AUTHSERVER_PASSWORD
+          value: {{ .authserver_password | quote }}                            
+        {{- end }}
+        {{- with .Values.authzdatabase.envVars }}
+        - name: MYSQL_PASSWORD
+          value: {{ .mysql_root_password | quote }}
+        - name: MYSQL_USER
+          value: {{ .mysql_root_username | quote }}
+        - name: MYSQL_PORT
+          value: {{ .mysql_port | quote }}
+        - name: MYSQL_DATABASE
+          value: {{ .mysql_database | quote }}                      
+        {{- end }}
+        {{- range $name, $value := .Values.authzclient.envVars }}
+        - name: {{ $name | quote | upper }}
+          value: {{ $value | quote}}
+        {{- end }}
+      restartPolicy: Never
+  backoffLimit: 1
+{{- end }}
